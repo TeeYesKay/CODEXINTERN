@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Data Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1> CSV Data Analyzer</h1>
+            <p class="subtitle">Upload, analyze, and visualize your data with powerful insights</p>
+        </header>
+
+        <div class="main-content">
+            <!-- File Upload Section -->
+            <section class="card upload-section">
+                <h2> Upload CSV File</h2>
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="fileInput" accept=".csv" hidden>
+                    <div class="upload-content">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <p>Click to upload or drag and drop</p>
+                        <span class="file-hint">CSV files only (Max 16MB)</span>
+                    </div>
+                </div>
+                <div id="fileInfo" class="file-info hidden"></div>
+            </section>
+
+            <!-- Data Info Section -->
+            <section class="card info-section hidden" id="infoSection">
+                <h2> Dataset Information</h2>
+                <div id="datasetInfo"></div>
+            </section>
+
+            <!-- Analysis Section -->
+            <section class="card analysis-section hidden" id="analysisSection">
+                <h2> Column Analysis</h2>
+                <div class="form-group">
+                    <label for="columnSelect">Select Column:</label>
+                    <select id="columnSelect" class="select-input">
+                        <option value="">Choose a column...</option>
+                    </select>
+                    <button id="analyzeBtn" class="learn-more">Analyze</button>
+                </div>
+                <div id="analysisResults" class="results hidden"></div>
+            </section>
+
+            <!-- Visualization Section -->
+            <section class="card viz-section hidden" id="vizSection">
+                <h2> Visualizations</h2>
+                
+                <!-- Bar Chart -->
+                <div class="viz-controls">
+                    <h3>Bar Chart</h3>
+                    <div class="form-group">
+                        <label for="barColumn">Select Column:</label>
+                        <select id="barColumn" class="select-input">
+                            <option value="">Choose a column...</option>
+                        </select>
+                        <button id="barChartBtn" class="learn-more">Generate Bar Chart</button>
+                    </div>
+                    <div id="barChartContainer" class="chart-container hidden"></div>
+                </div>
+
+                <!-- Scatter Plot -->
+                <div class="viz-controls">
+                    <h3>Scatter Plot</h3>
+                    <div class="form-group">
+                        <label for="scatterX">X-Axis Column:</label>
+                        <select id="scatterX" class="select-input">
+                            <option value="">Choose a column...</option>
+                        </select>
+                        <label for="scatterY">Y-Axis Column:</label>
+                        <select id="scatterY" class="select-input">
+                            <option value="">Choose a column...</option>
+                        </select>
+                        <button id="scatterPlotBtn" class="learn-more">Generate Scatter Plot</button>
+                    </div>
+                    <div id="scatterPlotContainer" class="chart-container hidden"></div>
+                </div>
+
+                <!-- Heatmap -->
+                <div class="viz-controls">
+                    <h3>Correlation Heatmap</h3>
+                    <div class="form-group">
+                        <button id="heatmapBtn" class="learn-more">Generate Heatmap</button>
+                    </div>
+                    <div id="heatmapContainer" class="chart-container hidden"></div>
+                </div>
+            </section>
+
+            <!-- Insights Section -->
+            <section class="card insights-section hidden" id="insightsSection">
+                <h2> Data Insights</h2>
+                <button id="insightsBtn" class="learn-more">Generate Insights</button>
+                <div id="insightsContent" class="insights-content hidden"></div>
+            </section>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+

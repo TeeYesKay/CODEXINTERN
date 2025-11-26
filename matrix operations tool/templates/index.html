@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Operations Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Matrix Operations Tool</h1>
+        </header>
+
+        <div class="main-content">
+            <div class="matrix-input-section">
+                <div class="matrix-container">
+                    <h2>Matrix 1</h2>
+                    <div class="matrix-size-selector">
+                        <label>Rows: <input type="number" id="rows1" min="1" max="10" value="2"></label>
+                        <label>Columns: <input type="number" id="cols1" min="1" max="10" value="2"></label>
+                        <button onclick="createMatrix(1)" class="learn-more" >Create Matrix</button>
+                    </div>
+                    <div id="matrix1-container"></div>
+                </div>
+
+                <div class="matrix-container">
+                    <h2>Matrix 2</h2>
+                    <div class="matrix-size-selector">
+                        <label>Rows: <input type="number" id="rows2" min="1" max="10" value="2"></label>
+                        <label>Columns: <input type="number" id="cols2" min="1" max="10" value="2"></label>
+                        <button onclick="createMatrix(2)" class="learn-more">Create Matrix</button>
+                    </div>
+                    <div id="matrix2-container"></div>
+                </div>
+            </div>
+
+            <div class="operations-section">
+                <h2>Operations</h2>
+                
+                <div class="operation-group">
+                    <h3 class="group-title">Binary Operations (Matrix 1 & 2)</h3>
+                    <div class="operation-buttons">
+                        <button onclick="performOperation('add')" class="learn-more">
+                            <span class="op-icon">+</span>
+                            <span>Addition (A + B)</span>
+                        </button>
+                        <button onclick="performOperation('subtract')" class="learn-more">
+                            <span class="op-icon">−</span>
+                            <span>Subtraction (A - B)</span>
+                        </button>
+                        <button onclick="performOperation('multiply')" class="learn-more">
+                            <span class="op-icon">×</span>
+                            <span>Multiplication (A × B)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="operation-group">
+                    <h3 class="group-title">Matrix 1 Operations</h3>
+                    <div class="operation-buttons">
+                        <button onclick="performOperation('transpose', 1)" class="learn-more">
+                            <span class="op-icon">⊤</span>
+                            <span>Transpose (Aᵀ)</span>
+                        </button>
+                        <button onclick="performOperation('determinant', 1)" class="learn-more">
+                            <span class="op-icon">|A|</span>
+                            <span>Determinant (det A)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="operation-group">
+                    <h3 class="group-title">Matrix 2 Operations</h3>
+                    <div class="operation-buttons">
+                        <button onclick="performOperation('transpose', 2)" class="learn-more">
+                            <span class="op-icon">⊤</span>
+                            <span>Transpose (Bᵀ)</span>
+                        </button>
+                        <button onclick="performOperation('determinant', 2)" class="learn-more">
+                            <span class="op-icon">|B|</span>
+                            <span>Determinant (det B)</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-section">
+                <h2>Result</h2>
+                <div id="result-container">
+                    <p class="placeholder">Perform an operation to see results here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
